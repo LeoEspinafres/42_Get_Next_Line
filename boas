@@ -1,0 +1,135 @@
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#define BUFFER_SIZE 500
+
+int ft_strlen(char *s)
+{
+	int i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i] != '\0' && s[i] != '\n')
+		i++;
+	if (s[i] == '\n')
+		i++;
+	return (i);
+}
+
+char *ft_strjoin(char *s1, char *s2)
+{
+	int i;
+	int j;
+	char *together;
+
+	i = 0;
+	j = 0;
+	together = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!together)
+		return (NULL);
+	while (s1 && s1[i])
+		together[j++] = s1[i++];
+	i = 0;
+	while (s2[i] && s2)
+	{
+		together[j] = s2[i++];
+		if (together[j++] == '\n')
+			break;
+	}
+	together[i] = '\0';
+	free(s1);
+	return (together);
+}
+
+int ft_stop_while_loop(char *buffer)
+{
+	int i;
+	int flag;
+
+	i = 0;
+	flag = 0;
+	while (buffer[i])
+	{
+		if (buffer[i] != '\n')
+			i++;
+		if (buffer[i] == '\n')
+		{
+			flag = 1;
+			break;
+		}
+	}
+	return flag;
+}
+
+int ft_update_buffer(char *buffer)
+{
+	int j = 0;
+	int i = 0;
+	int	flag = 0;
+
+	while (buffer[i])
+	{
+		if (flag)
+			buffer[j++] = buffer[i];
+		if (buffer[i] == '\n')
+			flag = 1;
+		buffer[i] = '\0';
+		i++;
+	}
+
+/* 	if (buffer[i] == '\n')
+	{
+		buffer[i++] == '\0';
+		while (buffer[i] != 0)
+		{
+			buffer[j++] = buffer[i];
+			buffer[i++] = '\0';
+		}
+	} */
+	return flag;
+}
+
+char *get_next_line(int fd)
+{
+	static char buffer[BUFFER_SIZE + 1];
+	char *line;
+
+	line = NULL;
+	if (fd < 0)
+		return NULL;
+	while (buffer[0] != '\0' || (read(fd, buffer, BUFFER_SIZE) > 0))
+	{
+		line = ft_strjoin(line, buffer);
+		if (ft_strlen(buffer) == 0)
+			return (line);
+		if (ft_update_buffer(buffer))
+			break;
+		if (read(fd, buffer, 0) < 0)
+		{
+			free (line);
+			return NULL;
+		}
+	}
+	//printf("buffer %s\n", buffer);
+	return (line);
+}
+
+int main(void)
+{
+	int fd = open("ola.txt", O_RDONLY);
+	char *line;
+	line = get_next_line(fd);
+	while (line)
+	{
+		printf("%s", line);
+		free(line);
+		line = get_next_line(fd);
+
+	}
+	close(fd);
+
+	return (0);
+}
