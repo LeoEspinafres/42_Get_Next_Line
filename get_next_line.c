@@ -6,7 +6,7 @@
 /*   By: lcampos- <lcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:12:50 by lcampos-          #+#    #+#             */
-/*   Updated: 2023/05/24 16:53:19 by lcampos-         ###   ########.fr       */
+/*   Updated: 2023/05/25 14:53:02 by lcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,3 @@ char	*get_next_line(int fd)
 	}
 	return (line);
 }
-
-// int main ()
-// {
-// 	int	fd;
-
-//     fd = open("ola.txt", O_RDONLY);
-// 	printf("%s", get_next_line(fd));
-// 	close(fd);
-// 	return (0);
-// }

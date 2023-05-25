@@ -6,27 +6,25 @@
 /*   By: lcampos- <lcampos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:19:33 by lcampos-          #+#    #+#             */
-/*   Updated: 2023/05/24 16:59:41 by lcampos-         ###   ########.fr       */
+/*   Updated: 2023/05/25 14:56:55 by lcampos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *s)
+int	ft_strlen(char *s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	if (!s)
 		return (0);
-	while (s[i] != '\0' && s[i] != '\n')
-		i++;
-	if (s[i] == '\n')
+	while (s[i] != '\0')
 		i++;
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *line, char *buffer)
 {
 	int		i;
 	int		j;
@@ -34,31 +32,31 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	together = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	together = malloc(ft_strlen(line) + ft_strlen(buffer) + 1);
 	if (!together)
 		return (NULL);
-	while (s1 && s1[i])
-		together[j++] = s1[i++];
-	i = 0;
-	while (s2 && s2[i])
+	while (line && line[j])
+		together[i++] = line[j++];
+	j = 0;
+	while (buffer && buffer[j])
 	{
-		together[j] = s2[i++];
-		if (together[j++] == '\n')
+		together[i++] = buffer[j];
+		if (buffer[j++] == '\n')
 			break ;
 	}
 	together[i] = '\0';
-	free(s1);
+	free(line);
 	return (together);
 }
 
 int	ft_update_buffer(char *buffer)
 {
-	int	j;
 	int	i;
+	int	j;
 	int	flag;
 
-	j = 0;
 	i = 0;
+	j = 0;
 	flag = 0;
 	while (buffer[i])
 	{
