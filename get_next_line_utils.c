@@ -49,23 +49,31 @@ char	*ft_strjoin(char *line, char *buffer)
 	return (together);
 }
 
-int	ft_update_buffer(char *buffer)
+void	ft_update_buffer(char *buffer, int *flag)
 {
 	int	i;
 	int	j;
-	int	flag;
 
 	i = 0;
 	j = 0;
-	flag = 0;
-	while (buffer[i])
+	if (buffer[i] == '\n')
+		*flag = 1;
+	while (buffer[i] && buffer[i] != '\n')
 	{
-		if (flag)
-			buffer[j++] = buffer[i];
-		if (buffer[i] == '\n')
-			flag = 1;
-		buffer[i] = '\0';
+		if (buffer[i + 1] == '\n')
+			*flag = 1;
 		i++;
 	}
-	return (flag);
+	i++;
+	while (i < BUFFER_SIZE)
+	{
+		buffer[j] = buffer[i];
+		i++;
+		j++;
+	}
+	while (j < BUFFER_SIZE)
+	{
+		buffer[j] = 0;
+		j++;
+	}
 }

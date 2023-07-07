@@ -17,8 +17,10 @@ char	*get_next_line(int fd)
 	static char	buffer[BUFFER_SIZE + 1];
 	char		*line;
 	int			i;
+	int			flag;
 
 	i = 0;
+	flag = 0;
 	line = NULL;
 	if (read(fd, 0, 0) < 0 || BUFFER_SIZE <= 0)
 	{
@@ -29,7 +31,8 @@ char	*get_next_line(int fd)
 	while (buffer[0] || (read(fd, buffer, BUFFER_SIZE) > 0))
 	{
 		line = ft_strjoin(line, buffer);
-		if (ft_update_buffer(buffer))
+		ft_update_buffer(buffer, &flag);
+		if (flag)
 			break ;
 	}
 	return (line);

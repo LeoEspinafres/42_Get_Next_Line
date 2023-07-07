@@ -25,6 +25,6 @@
 char	*get_next_line(int fd);
 int		ft_strlen(char *s);
 char	*ft_strjoin(char *line, char *buffer);
-int		ft_update_buffer(char *buffer);
+void		ft_update_buffer(char *buffer, int *flag);
 
 #endif
