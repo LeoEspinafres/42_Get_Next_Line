@@ -6,7 +6,7 @@
 /*   By: leonor <leonor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 14:25:45 by leonor            #+#    #+#             */
-/*   Updated: 2023/07/30 14:52:01 by leonor           ###   ########.fr       */
+/*   Updated: 2023/07/31 00:32:12 by leonor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*get_next_line(int fd)
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= FOPEN_MAX)
 		return (NULL);
-	if (read(fd, 0, 0) < 0)
+	if (read(fd, 0, 0) < 0) 
 	{
 		while (buffer[fd][++i])
 			buffer[fd][i] = 0;

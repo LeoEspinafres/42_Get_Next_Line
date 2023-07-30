@@ -6,7 +6,7 @@
 /*   By: leonor <leonor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:19:33 by lcampos-          #+#    #+#             */
-/*   Updated: 2023/07/30 14:38:10 by leonor           ###   ########.fr       */
+/*   Updated: 2023/07/31 00:31:43 by leonor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char *line, char *buffer)
+char	*ft_strjoin(char *str1, char *str2)
 {
 	int		i;
 	int		j;
@@ -32,20 +32,20 @@ char	*ft_strjoin(char *line, char *buffer)
 
 	i = 0;
 	j = 0;
-	together = malloc(ft_strlen(line) + ft_strlen(buffer) + 1);
+	together = malloc(ft_strlen(str1) + ft_strlen(str2) + 1);
 	if (!together)
 		return (NULL);
-	while (line && line[j])
-		together[i++] = line[j++];
+	while (str1 && str1[j])
+		together[i++] = str1[j++];
 	j = 0;
-	while (buffer && buffer[j])
+	while (str2 && str2[j])
 	{
-		together[i++] = buffer[j];
-		if (buffer[j++] == '\n')
+		together[i++] = str2[j];
+		if (str2[j++] == '\n')
 			break ;
 	}
 	together[i] = '\0';
-	free(line);
+	free(str1);
 	return (together);
 }
 
