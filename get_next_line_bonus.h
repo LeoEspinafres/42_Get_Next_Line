@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcampos- <lcampos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leonor <leonor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 18:17:04 by lcampos-          #+#    #+#             */
-/*   Updated: 2023/05/25 14:53:11 by lcampos-         ###   ########.fr       */
+/*   Created: 2023/07/30 14:27:19 by leonor            #+#    #+#             */
+/*   Updated: 2023/07/30 14:27:21 by leonor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <fcntl.h>
 # include <stdio.h>
